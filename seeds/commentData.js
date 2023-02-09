@@ -3,9 +3,8 @@ const { Comment } = require('../models');
 const commentdata = [
   {
     user_name: 'Beyonce',
-    date: Date.now(),
+    comment_date: 'Feb 1 2023',
     content: 'This is a comment on a previous post'
-
 
   }
 ];

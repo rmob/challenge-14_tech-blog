@@ -11,6 +11,14 @@ Entry.init(
       primaryKey: true,
       autoIncrement: true,
     },
+    user_name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      // references: {
+      //   model: 'user',
+      //   key: 'id'
+      // }
+    },
     title: {
       type: DataTypes.STRING,
       allowNull: false,
