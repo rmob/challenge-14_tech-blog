@@ -4,8 +4,9 @@ const { Entry, Comment, User } = require("../models");
 // GET all entries for homepage
 router.get("/", async (req, res) => {
   try {
-    const dbEntryData = await Entry.findAll();
-      // {include: [{Comment.user_name}]}();
+    const dbEntryData = await Entry.findAll({
+        include: [{ model: User }]
+    });
     
     const entries = dbEntryData.map((entry) => entry.get({ plain: true }));
     console.log(entries);
@@ -21,7 +22,7 @@ router.get("/", async (req, res) => {
 });
 
 // GET one gallery
-// router.get('/entry/:id', async (req, res) => {
+// router.get('/user/:id', async (req, res) => {
 //   // If the user is not logged in, redirect the user to the login page
 //   if (!req.session.loggedIn) {
 //     res.redirect('/login');
@@ -34,10 +35,8 @@ router.get("/", async (req, res) => {
 //             model: Comment,
 //             attributes: [
 //               'id',
-//               'title',
 //               'user_name',
 //               'content',
-//               'comment_date'
 //             ],
 //           },
 //         ],

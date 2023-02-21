@@ -2,21 +2,21 @@ const User = require('./User');
 const Entry = require('./Entry');
 const Comment = require('./Comment');
 
-// User.hasMany(Entry, {
-//   foreignKey: 'gallery_id',
-// });
+User.hasMany(Entry, {
+  foreignKey: 'user_id',
+});
 
-// Entry.belongsTo(User, {
-//   foreignKey: 'gallery_id',
-// });
+Entry.belongsTo(User, {
+  foreignKey: 'user_id',
+});
 
-// User.hasMany(Comment, {
-//   foreignKey: '',
-// });
+Entry.hasMany(Comment, {
+  foreignKey: 'entry_id',
+});
 
-// Comment.belongsTo(User, {
-//   foreignKey: '',
-// })
+Comment.belongsTo(Entry, {
+  foreignKey: 'entry_id',
+})
 
 // Comment.belongsTo(Entry, {
 //   foreignKey: '',

@@ -5,7 +5,7 @@ const { User } = require('../../models');
 router.post('/', async (req, res) => {
   try {
     const dbUserData = await User.create({
-      username: req.body.user_name,
+      user_name: req.body.username,
       email: req.body.email,
       password: req.body.password,
     });
@@ -40,7 +40,7 @@ router.post('/login', async (req, res) => {
     const validPassword = await dbUserData.checkPassword(req.body.password);
     
     if (!validPassword) {
-      console.log(`this password is invalid: ${req.body.password}`)
+      console.log(`this password is invalid:${req.body.password}`)
       res
         .status(400)
         .json({ message: 'Incorrect email or password. Please try again!' });
@@ -64,6 +64,7 @@ router.post('/login', async (req, res) => {
 router.post('/logout', (req, res) => {
   if (req.session.loggedIn) {
     req.session.destroy(() => {
+      res.render('logout')
       res.status(204).end();
     });
   } else {

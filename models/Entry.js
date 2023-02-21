@@ -11,26 +11,24 @@ Entry.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    user_name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      // references: {
-      //   model: 'user',
-      //   key: 'id'
-      // }
-    },
+
     title: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    post_date: {
-      type: DataTypes.DATE,
-      allowNull: false,
-    },
+
     content: {
       type: DataTypes.STRING,
       allowNull: false,    
     },   
+
+    user_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'user',
+        key: 'id'
+      }
+    }
   },
   {
     sequelize,
