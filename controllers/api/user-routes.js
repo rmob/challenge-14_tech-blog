@@ -1,25 +1,31 @@
 const router = require('express').Router();
 const { User } = require('../../models');
 
-// CREATE new user
-router.post('/', async (req, res) => {
-  try {
-    const dbUserData = await User.create({
-      user_name: req.body.username,
-      email: req.body.email,
-      password: req.body.password,
-    });
+// SignUp page
 
-    req.session.save(() => {
-      req.session.loggedIn = true;
+// router.get('/signup', async (req, res) => {
+//   res.render('signup')
+// })
 
-      res.status(200).json(dbUserData);
-    });
-  } catch (err) {
-    console.log(err);
-    res.status(500).json(err);
-  }
-});
+// // CREATE new user
+// router.post('/signup', async (req, res) => {
+//   try {
+//     const dbUserData = await User.create({
+//       user_name: req.body.username,
+//       email: req.body.email,
+//       password: req.body.password,
+//     });
+
+//     req.session.save(() => {
+//       req.session.loggedIn = true;
+//       res.render('homepage')
+//       res.status(200).json(dbUserData);
+//     });
+//   } catch (err) {
+//     console.log(err);
+//     res.status(500).json(err);
+//   }
+// });
 
 // Login
 router.post('/login', async (req, res) => {
@@ -65,7 +71,7 @@ router.post('/logout', (req, res) => {
   if (req.session.loggedIn) {
     req.session.destroy(() => {
       res.render('logout')
-      // res.status(204).end();
+      res.status(204).end();
     });
   } else {
     res.status(404).end();

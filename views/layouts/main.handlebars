@@ -8,24 +8,26 @@
     <title>TechBlog</title>
 </head>
 <body>
-    <header>
-        <h1>this is main.handlebars</h1>
-    </header>
-    <nav>
-    <a href="/">Home</a>
-    {{#if loggedIn}}
-    <button id="logout" class="btn-no-style">Logout</button>
-    {{else}}
-    <a href="/login">Login</a>
-    {{/if}}
+  <header>
+    <nav class="navbar">
+        <a href="/">Home</a>
+        <a href="/">Dashboard</a>
+          {{#if loggedIn}}
+            <button id="logout" class="btn-no-style">Logout</button>
+          {{else}}
+            <a href="/login">Login</a>
+            <a href="/api/signup">Sign Up</a>
+          {{/if}}
+        
   </nav>
+  <div class="section-title">
+    <div class="title-border">TechBlog</div>
+  </div>
+  </header>
   <main>
-    <aside>
-      <h2>You are loggedIn</h2>
-    </aside>
-    <div class="entry">
+
       {{{body}}}
-    </div>
+    
   </main>
   {{#if loggedIn}}
   <script src="/js/logout.js"></script>
