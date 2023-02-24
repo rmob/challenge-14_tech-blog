@@ -22,34 +22,34 @@ router.get("/", async (req, res) => {
   }
 });
 
-// GET one gallery
-// router.get('/user/:id', async (req, res) => {
-//   // If the user is not logged in, redirect the user to the login page
-//   if (!req.session.loggedIn) {
-//     res.redirect('/login');
-//   } else {
-//     // If the user is logged in, allow them to view the gallery
-//     try {
-//       const dbEntryData = await Entry.findByPk(req.params.id, {
-//         include: [
-//           {
-//             model: Comment,
-//             attributes: [
-//               'id',
-//               'user_name',
-//               'content',
-//             ],
-//           },
-//         ],
-//       });
-//       const entry = dbEntryData.get({ plain: true });
-//       res.render('entry', { entry, loggedIn: req.session.loggedIn });
-//     } catch (err) {
-//       console.log(err);
-//       res.status(500).json(err);
-//     }
-//   }
-// });
+// GET one entry
+router.get('/entry/:id', async (req, res) => {
+  // If the user is not logged in, redirect the user to the login page
+  if (!req.session.loggedIn) {
+    res.redirect('/login');
+  } else {
+    // If the user is logged in, allow them to view the gallery
+    try {
+      const dbEntryData = await Entry.findByPk(req.params.id, {
+        include: [
+          {
+            model: Comment,
+            attributes: [
+              'id',
+              'user_name',
+              'content',
+            ],
+          },
+        ],
+      });
+      const entry = dbEntryData.get({ plain: true });
+      res.render('entry', { entry, loggedIn: req.session.loggedIn });
+    } catch (err) {
+      console.log(err);
+      res.status(500).json(err);
+    }
+  }
+});
 
 // GET one painting
 // router.get('/painting/:id', async (req, res) => {

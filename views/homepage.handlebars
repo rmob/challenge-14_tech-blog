@@ -1,10 +1,10 @@
-{{!-- {{#each entries as |entry|}}
-{{> entry-details}}
-{{/each}} --}}
-<h1>Blog Posts</h1>
-
-{{!-- <h2>{{> entry-details}}</h2> --}}
+<section class="container">
+<div class="page-title">Blog Posts</div>
 {{#each entries as |entry| }}
-<h3 class="entry">{{content}}</h3>
-<p>{{user.user_name}}</p>
+<a href="/entry/{{id}}"
+<div class="page-title">{{title}}</div>
+<p>{{content}}</p>
+<p>{{createdAt}}</p>
+</a>
 {{/each}}
+</section>
