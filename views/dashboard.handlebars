@@ -1,1 +1,5 @@
-<h1>THIS IS DASHBOARD.HBS</h1>
+{{#if loggedIn}}
+<h1>THIS IS DASHBOARD.HBS.  you are logged in</h1>
+{{else}}
+<a>You must login to view dashboard</a>
+{{/if}}
