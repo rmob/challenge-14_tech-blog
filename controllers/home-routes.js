@@ -71,6 +71,19 @@ router.get('/entry/:id', async (req, res) => {
 //   }
 // });
 
+router.get("/create", async (req, res) => {
+      try {
+          const entryData = await Entry.findAll()
+  
+          res.render('create-entry', {
+              loggedIn: req.session.loggedIn
+          })
+      } catch (err) {
+          console.log(err, "THIS IS ERROR MESSAGE");
+          res.status(500).json(err);
+        }
+  })
+
 router.get('/login', (req, res) => {
   if (req.session.loggedIn) {
     res.redirect('/');

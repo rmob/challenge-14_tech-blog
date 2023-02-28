@@ -98,8 +98,9 @@ body {
     
 }
 
-.form-input:active {
-    border: none;
+input::focus {
+    background-color: aliceblue;
+    border-style: none;
 }
 
 label {

@@ -2,9 +2,16 @@
 {{#if loggedIn}}
 <h1>THIS IS DASHBOARD.HBS.  you are logged in</h1>
 <div id="new-post">
-    <a href="/api/dashboard/create"> + New Post</a>
+    <a href="/create"> + New Post</a>
 </div>
 {{else}}
 <a>You must login to view dashboard</a>
 {{/if}}
+{{#each entries as |entry| }}
+<a href="/entry/{{id}}">
+<div class="page-title">{{title}}</div>
+<p>{{content}}</p>
+<p>{{createdAt}}</p>
+</a>
+{{/each}}
 </section>
