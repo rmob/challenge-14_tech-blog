@@ -1,6 +1,5 @@
 const createNewBlogEntry = async (event) => {
   event.preventDefault();
-  console.log("clicked");
   const title = document.getElementById("entry-title").value.trim();
   const content = document.getElementById("entry-body").value.trim();
 

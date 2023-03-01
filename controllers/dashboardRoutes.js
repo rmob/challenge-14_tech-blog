@@ -23,6 +23,35 @@ router.get("/", async (req, res) => {
     }
   });
 
+  router.get('/:id', async (req, res) => {
+    // If the user is not logged in, redirect the user to the login page
+    console.log('route hit')
+    if (!req.session.loggedIn) {
+      res.redirect('/login');
+    } else {
+      // If the user is logged in, allow them to view the gallery
+      try {
+        const dbEntryData = await Entry.findByPk(req.params.id, {
+          include: [
+            {
+              model: Comment,
+              attributes: [
+                'id',
+                'user_name',
+                'content',
+              ],
+            },
+          ],
+        });
+        const entry = dbEntryData.get({ plain: true });
+        res.render('edit', { entry, loggedIn: req.session.loggedIn });
+      } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+      }
+    }
+  });
+
 module.exports = router
 
 // router.get("/", async (req, res) => {

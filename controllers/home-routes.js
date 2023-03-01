@@ -51,26 +51,27 @@ router.get('/entry/:id', async (req, res) => {
   }
 });
 
-// GET one painting
-// router.get('/painting/:id', async (req, res) => {
-//   // If the user is not logged in, redirect the user to the login page
-//   if (!req.session.loggedIn) {
-//     res.redirect('/login');
-//   } else {
-//     // If the user is logged in, allow them to view the painting
-//     try {
-//       const dbPaintingData = await Painting.findByPk(req.params.id);
+// To Add Comment to Entry
+router.post("/entry/:id", async (req, res) => {
+  console.log('route hit')
+  try {
+  
+      const newComment = await Comment.create({
+          content: req.body.content,
+          // username: req.body.user.name,
+          user_id: req.session.user_id,
+          entry_id: req.body.entry_id,
+          
+      });
+      
+      res.status(200).json(newComment);
+      } catch (err) {
+          res.status(400).json(err);
+      }
+      
+  });
 
-//       const painting = dbPaintingData.get({ plain: true });
-
-//       res.render('painting', { painting, loggedIn: req.session.loggedIn });
-//     } catch (err) {
-//       console.log(err);
-//       res.status(500).json(err);
-//     }
-//   }
-// });
-
+// Get create entry form page
 router.get("/create", async (req, res) => {
       try {
           const entryData = await Entry.findAll()
@@ -83,6 +84,19 @@ router.get("/create", async (req, res) => {
           res.status(500).json(err);
         }
   })
+
+  // GET route for add comment
+  // router.get('/comment', async (req, res) => {
+  //   res.render('comment', {
+  //     loggedIn: req.session.loggedIn
+  //   })
+  // })
+
+  // GET Signup route
+router.get('/signup', async (req, res) => {
+  res.render('signup')
+})
+
 
 router.get('/login', (req, res) => {
   if (req.session.loggedIn) {

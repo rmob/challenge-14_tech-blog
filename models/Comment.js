@@ -13,7 +13,7 @@ Comment.init(
     },
     user_name: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     content: {
       type: DataTypes.STRING,
