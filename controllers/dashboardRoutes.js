@@ -103,7 +103,7 @@ router.get("/", async (req, res) => {
     });
   });
 
-  router.delete('/:id', (req, res) => {
+  router.delete('/edit/:id', (req, res) => {
     Entry.destroy({
       where: {id: req.params.id}
     })
