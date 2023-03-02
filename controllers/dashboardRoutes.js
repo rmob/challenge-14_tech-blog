@@ -44,13 +44,83 @@ router.get("/", async (req, res) => {
           ],
         });
         const entry = dbEntryData.get({ plain: true });
-        res.render('edit', { entry, loggedIn: req.session.loggedIn });
+        res.render('single-entry-dashboard', { entry, loggedIn: req.session.loggedIn });
       } catch (err) {
         console.log(err);
         res.status(500).json(err);
       }
     }
   });
+
+  router.get('/edit/:id', async (req, res) => {
+    // If the user is not logged in, redirect the user to the login page
+    console.log('route hit')
+    if (!req.session.loggedIn) {
+      res.redirect('/login');
+    } else {
+      // If the user is logged in, allow them to view the gallery
+      try {
+        const dbEntryData = await Entry.findByPk(req.params.id, {
+          include: [
+            {
+              model: Comment,
+              attributes: [
+                'id',
+                'user_name',
+                'content',
+              ],
+            },
+          ],
+        });
+        const entry = dbEntryData.get({ plain: true });
+        res.render('edit-dashboard', { entry, loggedIn: req.session.loggedIn });
+      } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+      }
+    }
+  });
+
+  // NEED JS FOR THESE PUT AND DELETE ROUTES
+  router.put('/edit/:id', async (req, res) => {
+    Entry.update({
+      content: req.body.content,
+      title: req.body.title
+    },
+    {
+      where: {id: req.params.id}
+    })
+    .then(dbEntryData => {
+      if (!dbEntryData) {
+        res.status(404).json({ message: 'No post found with this id' });
+        return;
+      }
+      res.json(dbEntryData);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+  });
+
+  router.delete('/:id', (req, res) => {
+    Entry.destroy({
+      where: {id: req.params.id}
+    })
+    .then(dbEntryData => {
+      if (!dbEntryData) {
+        res.status(404).json({ message: 'No post found with this id' });
+        return;
+      }
+      res.json(dbEntryData);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+  });
+
+
 
 module.exports = router
 

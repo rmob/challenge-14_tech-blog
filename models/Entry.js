@@ -28,6 +28,14 @@ Entry.init(
         model: 'user',
         key: 'id'
       }
+    },
+
+    entry_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'comment',
+        key: 'id'
+      }
     }
   },
   {

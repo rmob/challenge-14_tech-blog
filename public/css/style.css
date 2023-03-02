@@ -122,6 +122,7 @@ label {
     padding: .5rem 1rem;
     border-radius: 2px;
     background-color: whitesmoke;
+    margin: auto 1rem;
 }
 
 #new-post, #new-comment {

@@ -7,7 +7,7 @@ const createNewBlogComment = async (event) => {
 
     console.log(entry_id)
     const content = document.getElementById("comment-textarea").value.trim();
-  
+    
     if (content) {
       const response = await fetch(`/entry/${entry_id}`, {
         method: "POST",
@@ -16,7 +16,8 @@ const createNewBlogComment = async (event) => {
       });
   
       if (response.ok) {
-        document.location.replace("/dashboard");
+        // document.location.replace("/dashboard");
+        response.json()
       } else {
         alert("Failed to post new comment");
       }

@@ -18,13 +18,12 @@ Comment.belongsTo(Entry, {
   foreignKey: 'entry_id',
 })
 
-// Comment.belongsTo(Entry, {
-//   foreignKey: '',
+// Comment.belongsTo(User, {
+//   foreignKey: 'user_id',
 // })
 
-// Entry.hasMany(Comment, {
-//   foreignKey: '',
+// User.hasMany(Comment, {
+//   foreignKey: 'user_id',
 // })
-
 
 module.exports = { User, Entry, Comment };

@@ -36,13 +36,22 @@ router.get('/entry/:id', async (req, res) => {
             model: Comment,
             attributes: [
               'id',
-              'user_name',
+              'user_id',
+              'entry_id',
               'content',
             ],
           },
+          { 
+            model: User,
+            attributes: [
+              'user_name',
+              'id'
+          ],
+        },
         ],
       });
       const entry = dbEntryData.get({ plain: true });
+      // const comments = dbEntryData.map((comment) => comment.get({ plain: true}))
       res.render('entry', { entry, loggedIn: req.session.loggedIn });
     } catch (err) {
       console.log(err);
@@ -58,7 +67,7 @@ router.post("/entry/:id", async (req, res) => {
   
       const newComment = await Comment.create({
           content: req.body.content,
-          // username: req.body.user.name,
+          username: req.body.user_name,
           user_id: req.session.user_id,
           entry_id: req.body.entry_id,
           
