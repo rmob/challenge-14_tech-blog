@@ -7,4 +7,10 @@ module.exports = {
       new Date(date).getFullYear() + 5
     }`;
   },
+
+  iterate: (array) => {
+    for (i = 0; i < array.length; i++) {
+      return i
+    }
+  }
 };

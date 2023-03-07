@@ -7,11 +7,12 @@ const createNewBlogComment = async (event) => {
 
     console.log(entry_id)
     const content = document.getElementById("comment-textarea").value.trim();
+    // const user_name = document.getElementById("user-name-field").value.trim();
     
     if (content) {
       const response = await fetch(`/entry/${entry_id}`, {
         method: "POST",
-        body: JSON.stringify({ content, entry_id }),
+        body: JSON.stringify({ content, entry_id}),
         headers: { "Content-Type": "application/json" },
       });
   

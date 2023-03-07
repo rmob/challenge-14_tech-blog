@@ -6,7 +6,7 @@ const withAuth = require('../utils/auth');
 router.get("/", async (req, res) => {
   try {
     const dbEntryData = await Entry.findAll({
-        include: [{ model: User }]
+        include: [{ model: User, Comment }]
     });
     
     const entries = dbEntryData.map((entry) => entry.get({ plain: true }));
@@ -39,19 +39,20 @@ router.get('/entry/:id', async (req, res) => {
               'user_id',
               'entry_id',
               'content',
+              'user_name'
             ],
           },
           { 
             model: User,
-            attributes: [
-              'user_name',
-              'id'
-          ],
+          //   attributes: [
+          //     'user_name',
+          //     'id'
+          // ],
         },
         ],
       });
       const entry = dbEntryData.get({ plain: true });
-      // const comments = dbEntryData.map((comment) => comment.get({ plain: true}))
+      console.log(entry)
       res.render('entry', { entry, loggedIn: req.session.loggedIn });
     } catch (err) {
       console.log(err);
