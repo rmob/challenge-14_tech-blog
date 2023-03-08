@@ -4,6 +4,9 @@ const withAuth = require('../utils/auth');
 
 // GET all entries for dashboard
 router.get("/", async (req, res) => {
+  if (!req.session.loggedIn) {
+    res.redirect('/login');
+  } else
     try {
       const dbEntryData = await Entry.findAll({
           include: [{ model: User, Comment }],
