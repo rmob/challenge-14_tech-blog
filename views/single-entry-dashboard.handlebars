@@ -1,7 +1,13 @@
 <section class="container">
-<div class="page-title">EDIT {{entry.id}}ENTRY.HBS</div>
-<p>{{entry.title}}</p>
-<p>{{entry.content}}</p>
-<button><a href="/dashboard/edit/{{entry.id}}">Edit</a></button>
-
+<div class="page-title">
+        <div>{{entry.title}}</div>
+        <div id="byline"> created at: {{format_time entry.createdAt}} {{format_date entry.createdAt}}</div>
+      </div>
+      <div class="form-border">
+      <p class="blog-content">{{entry.content}}</p>
+      </div>
+    </a>
+    <div class="btn-row">
+<button id="edit-btn"><a href="/dashboard/edit/{{entry.id}}">Edit</a></button>
+    </div>
 </section>

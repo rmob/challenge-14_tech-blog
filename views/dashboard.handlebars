@@ -1,18 +1,25 @@
 <section class="container">
 {{#if loggedIn}}
-<h1>THIS IS DASHBOARD.HBS.  you are logged in</h1>
 {{else}}
 <a>You must login to view dashboard</a>
 {{/if}}
 {{#each entries as |entry| }}
+<div class="blog-border">
 <a href="/dashboard/{{id}}">
-<div class="page-title">{{title}}</div>
+<div class="page-title">
+        <div>{{title}}</div>
+        <div id="byline"> created at: {{ format_time createdAt}} {{ format_date createdAt }}</div>
+      </div>
+<div class="blog-content">
 <p>{{content}}</p>
-<p>{{createdAt}}</p>
+</div>
 </a>
+</div>
 {{/each}}
 
+<div class="btn-row">
 <div id="new-post">
     <a href="/create"> + New Post</a>
+</div>
 </div>
 </section>

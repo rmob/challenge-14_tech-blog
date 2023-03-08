@@ -1,18 +1,23 @@
 <section class="container">
-<div class="page-title">{{entry.title}}</div>
-<p class="blog-container">{{entry.content}}</p>
-<label for="user-name-field"></label>
-<input class="form-input" type="input" id="user-name-field" placeholder="enter username here..."></input>
+<div class="page-title">
+        <div>{{entry.title}}</div>
+        <div id="byline">created by: {{entry.user.user_name}} </div>
+      </div>
+<p class="blog-border blog-content">{{entry.content}}</p>
+
+<div class="comments-header">Comments</div>
+{{#each entry.comments as |comment|}}
+<div class="blog-content comments-content">
+<p>{{comment.content}}</p>
+<p>{{comment.id}}</p>
+</div>
+{{/each}}
 <textarea class="form-input" id="comment-textarea" placeholder="write comment here..."></textarea>
 <div class="btn-row">
 <button id="comment-submit-btn">Submit</button>
 </div>
-<p>{{entry.user.user_name}}</p>
 
-{{#each entry.comments as |comment|}}
-<p>{{comment.content}}</p>
-<p>{{comment.id}}</p>
-{{/each}}
+
 
 
 </section>
