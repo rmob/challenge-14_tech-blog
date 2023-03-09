@@ -227,3 +227,8 @@ label {
 #edit-btn a {
     color: black;
 }
+
+.comment-p {
+    display: flex;
+    flex-wrap: wrap;
+}

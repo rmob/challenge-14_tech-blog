@@ -8,8 +8,7 @@
 <div class="comments-header">Comments</div>
 {{#each entry.comments as |comment|}}
 <div class="blog-content comments-content">
-<p>{{comment.content}}</p>
-<p>{{comment.id}}</p>
+<p class="comment-p">{{comment.content}}</p>
 </div>
 {{/each}}
 <textarea class="form-input" id="comment-textarea" placeholder="write comment here..."></textarea>
