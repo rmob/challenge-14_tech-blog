@@ -6,7 +6,7 @@ This is a community blog where users can post their own thoughts on technology a
 <img width="954" alt="techblog-scrnshot" src="https://user-images.githubusercontent.com/22803118/224031392-78430d3f-55b5-490b-9d61-78b0fa269b0e.png">
  
 ## Installation
-This application requires Express, Mysql2, Sequelize and Dotenv. 
+This application requires Express, Mysql2, Sequelize, Dotenv, bcrypt and Handlebars. 
 
 ## License
 The MIT License
